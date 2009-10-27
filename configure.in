@@ -3,9 +3,11 @@ AC_PREREQ(2.13)
 dnl Package name and version number (DO NOT MODIFY)
 dnl -----------------------------------------------
 
-AC_INIT([libecpp-common], [1.0])
+AC_INIT([libecpp], [1.0])
 AM_INIT_AUTOMAKE([foreign])
 AC_LANG([C++])
+
+AC_CONFIG_MACRO_DIR([m4])
 
 ACLOCAL_AMFLAGS='${ACLOCAL_FLAGS}'
 AC_SUBST(ACLOCAL_AMFLAGS)
@@ -23,5 +25,5 @@ AC_SUBST(DEPS_CFLAGS)
 AC_SUBST(DEPS_LIBS)
 
 dnl Create makefiles
-AC_OUTPUT(Makefile)
+AC_OUTPUT(Makefile src/Makefile)
 
