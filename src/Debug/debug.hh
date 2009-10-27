@@ -21,6 +21,13 @@ along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 namespace ecpp
 {
 
+  /** The Debug Helper Class
+   *
+   *  Use __debug(level,msg) for inserting debug information.
+   *
+   *  This class implements some methods to change how debug is generated,
+   *  currently only redirecting the output.
+   */
   class Debug
   {
   public:
