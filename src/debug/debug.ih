@@ -1,4 +1,6 @@
 #include "debug.hh"
 
+#include "../time/time.hh"
+
 using namespace std;
 using namespace ecpp;

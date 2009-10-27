@@ -50,7 +50,7 @@ VERSION = @VERSION@
 
 AUTOMAKE_OPTIONS = subdir-objects
 
-lib_LTLIBRARIES = ${USLNAME}.la
+lib_LTLIBRARIES = ${LNAME}.la
 
 #nobase_pkginclude_HEADERS = ${HEADERS}
 pkgincludedir = \$(prefix)/include/ecpp
