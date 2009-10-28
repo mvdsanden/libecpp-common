@@ -1,7 +1,7 @@
 #include <iostream>
 
 #define DEBUGLEVEL 2
-#include "../Debug/debug.hh"
+#include "../debug/debug.hh"
 
 using namespace ecpp;
 
