@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../Time/time.hh"
+#include "../time/time.hh"
 
 using namespace std;
 using namespace ecpp;
