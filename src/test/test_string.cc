@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../String/string.hh"
+#include "../string/string.hh"
 
 using namespace std;
 using namespace ecpp;

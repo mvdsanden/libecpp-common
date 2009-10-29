@@ -39,8 +39,14 @@ namespace ecpp
 
     static Debug &instance();
 
+    /**
+     *  @returns the debug output stream.
+     */
     std::ostream &out();
 
+    /**
+     *  Redirect the debug output to stream.
+     */
     void redirect(std::ostream &stream);
 
   private:
