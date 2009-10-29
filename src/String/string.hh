@@ -1,15 +1,15 @@
-/* 
-   This file is part of libecpp-module_name.
-   libecpp-module_name is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-   libecpp-mofule_name is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   You should have received a copy of the GNU General Public License
-   along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+/*
+  This file is part of libecpp-module_name.
+  libecpp-module_name is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  libecpp-mofule_name is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef __INC_ECPP_STRING_HH__
@@ -17,6 +17,7 @@
 
 #include <string>
 #include <vector>
+//#include <iterator>
 
 namespace ecpp
 {
@@ -36,7 +37,9 @@ namespace ecpp
   class String::Splitter {
   public:
 
-    class iterator  {
+    class iterator {
+
+      friend class String::Splitter;
 
       std::string const &d_str;
       std::string const &d_delim;
@@ -48,13 +51,20 @@ namespace ecpp
 	d_del = (d_del == std::string::npos?d_str.length():d_del+1);
       }
 
-    public:
-
       iterator(std::string const &str, std::string const &delim, size_t pos = 0)
 	: d_str(str), d_delim(delim), d_pos(pos)
       {
 	next();
       }
+
+    public:
+
+      // Iterator traits
+      typedef std::forward_iterator_tag iterator_category;
+      typedef std::string value_type;
+      typedef ptrdiff_t difference_type;
+      typedef iterator *pointer;
+      typedef iterator &reference;
 
       iterator(iterator const &other)
 	: d_str(other.d_str),
@@ -65,6 +75,13 @@ namespace ecpp
       }
 
       iterator &operator++()
+      {
+	d_pos = d_del;
+	next();
+	return *this;
+      }
+
+      iterator &operator++(int)
       {
 	d_pos = d_del;
 	next();
@@ -88,13 +105,22 @@ namespace ecpp
 
     };
 
+    /**
+     *  Create a splitter with string str and delimitter delim.
+     */
     Splitter(std::string const &str, std::string const &delim);
 
+    /**
+     *  @returns an iterator to the first element of the split pieces.
+     */
     iterator begin();
+
+    /**
+     *  @returns an iterator to the element after the last element of the split pieces.
+     */
     iterator end();
 
   private:
-
     std::string d_str;
     std::string d_delim;
   };
