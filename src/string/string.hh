@@ -25,121 +25,25 @@ namespace ecpp
   class String {
   public:
 
-    class Splitter;
+    class Splitter; // include "string/splitter.hh"
+    class Lexer;    // include "string/lexer.hh"
 
     /**
      *  Split a string using delimmitter delim.
      */
     static std::vector<std::string> split(std::string const &str, std::string const &delim);
 
+    /**
+     *  Lex a string using delimmitters in delims.
+     *
+     *  This creates a vector of tokens of the spring split by one of the
+     *  delimitters in delims and also contains the delimitters them selfs.
+     */
+    static std::vector<std::string> lex(std::string const &str, std::string const &delims);
+
   };
 
-  class String::Splitter {
-  public:
 
-    class iterator {
-
-      friend class String::Splitter;
-
-      std::string const &d_str;
-      std::string const &d_delim;
-      size_t d_pos, d_del;
-
-      void next()
-      {
-	d_del = d_str.find(d_delim,d_pos);
-	d_del = (d_del == std::string::npos?d_str.length():d_del+1);
-      }
-
-      iterator(std::string const &str, std::string const &delim, size_t pos = 0)
-	: d_str(str), d_delim(delim), d_pos(pos)
-      {
-	next();
-      }
-
-    public:
-
-      // Iterator traits
-      typedef std::forward_iterator_tag iterator_category;
-      typedef std::string value_type;
-      typedef ptrdiff_t difference_type;
-      typedef iterator *pointer;
-      typedef iterator &reference;
-
-      iterator(iterator const &other)
-	: d_str(other.d_str),
-	  d_delim(other.d_delim),
-	  d_pos(other.d_pos),
-	  d_del(other.d_del)
-      {
-      }
-
-      iterator &operator++()
-      {
-	d_pos = d_del;
-	next();
-	return *this;
-      }
-
-      iterator &operator++(int)
-      {
-	d_pos = d_del;
-	next();
-	return *this;
-      }
-
-      std::string operator*() const
-      {
-	return d_str.substr(d_pos,d_del-d_pos-1);
-      }
-
-      bool operator==(iterator const &other)
-      {
-	return (d_pos == other.d_pos);
-      }
-
-      bool operator!=(iterator const &other)
-      {
-	return (d_pos != other.d_pos);
-      }
-
-    };
-
-    /**
-     *  Create a splitter with string str and delimitter delim.
-     */
-    Splitter(std::string const &str, std::string const &delim);
-
-    /**
-     *  @returns an iterator to the first element of the split pieces.
-     */
-    iterator begin();
-
-    /**
-     *  @returns an iterator to the element after the last element of the split pieces.
-     */
-    iterator end();
-
-  private:
-    std::string d_str;
-    std::string d_delim;
-  };
-
-  inline String::Splitter::Splitter(std::string const &str, std::string const &delim)
-    : d_str(str),
-      d_delim(delim)
-  {
-  }
-
-  inline String::Splitter::iterator String::Splitter::begin()
-  {
-    return iterator(d_str,d_delim);
-  }
-
-  inline String::Splitter::iterator String::Splitter::end()
-  {
-    return iterator(d_str,d_delim,d_str.length());
-  }
 
 };
 
