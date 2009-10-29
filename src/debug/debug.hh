@@ -16,7 +16,12 @@ along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <ostream>
 
-#define __debug(level,x) if (level > DEBUGLEVEL) { Debug::instance().out() << __FILE__ << ":" << __LINE__ << ":" << x << std::endl; }
+//Default debuglevel is 0
+#ifndef DEBUGLEVEL
+  #define DEBUGLEVEL 0
+#endif
+
+#define __debug(level, x) if (level < DEBUGLEVEL) { Debug::instance().out() << "[D" << level << "] " << __FILE__ << ":" << __LINE__ << ":" << x << std::endl; }
 
 namespace ecpp
 {
