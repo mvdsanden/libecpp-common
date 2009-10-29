@@ -35,5 +35,7 @@ int main()
        i != l.end(); ++i)
     cout << "- '" << (*i) << "'." << endl;
 
+  cout << String::combine(s,":") << endl;
+
   return 0;
 }

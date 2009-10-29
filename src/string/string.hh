@@ -34,6 +34,11 @@ namespace ecpp
     static std::vector<std::string> split(std::string const &str, std::string const &delim);
 
     /**
+     *  Combine a list of string, adding delim between the elements.
+     */
+    static std::string combine(std::vector<std::string> const &lst, std::string const &delim);
+
+    /**
      *  Lex a string using delimmitters in delims.
      *
      *  This creates a vector of tokens of the spring split by one of the
