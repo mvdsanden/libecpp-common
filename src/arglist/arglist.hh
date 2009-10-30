@@ -25,9 +25,20 @@ namespace ecpp
 
     ArgList(int argc, char *argv[]);
 
+    /**
+     *  @returns an iterator to the begining of the argument list.
+     */
     iterator begin();
 
+    /**
+     *  @returns an iterator to the end of the argument list.
+     */
     iterator end();
+
+    /**
+     *  @returns true if their are no arguments apart from the executable.
+     */
+    bool empty() const;
 
   private:
 
@@ -40,6 +51,11 @@ namespace ecpp
     : d_argc(argc),
       d_argv(argv)
   {
+  }
+
+  inline bool ArgList::empty() const
+  {
+    return (d_argc <= 1);
   }
 
 
