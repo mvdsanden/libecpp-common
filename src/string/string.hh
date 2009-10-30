@@ -17,7 +17,7 @@
 
 #include <string>
 #include <vector>
-//#include <iterator>
+#include <map>
 
 namespace ecpp
 {
@@ -45,6 +45,23 @@ namespace ecpp
      *  delimitters in delims and also contains the delimitters them selfs.
      */
     static std::vector<std::string> lex(std::string const &str, std::string const &delims);
+
+    /**
+     *  Substitute all keys in substs with their values.
+     *
+     *  @returns the substituted result.
+     */
+    static std::string substitute(std::string const &str, std::map<std::string,std::string> const &substs);
+
+    /**
+     *  @return the lowercase version of str.
+     */
+    static std::string lower(std::string const &str);
+
+    /**
+     *  @return the uppercase version of str.
+     */
+    static std::string upper(std::string const &str);
 
   };
 

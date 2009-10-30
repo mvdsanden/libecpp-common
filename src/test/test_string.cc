@@ -37,5 +37,11 @@ int main()
 
   cout << String::combine(s,":") << endl;
 
+  map<string,string> substs;
+  substs["hahaha"] = "hihi";
+  substs["Hallo"]  = "Hoi";
+
+  cout << String::substitute(a,substs) << endl;
+
   return 0;
 }
