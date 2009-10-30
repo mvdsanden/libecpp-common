@@ -14,7 +14,8 @@ fi
 LSOURCE=libecpp-common.cc
 LNAME=`basename "${LSOURCE}" .cc`
 echo "Generating src/${LSOURCE}"
-echo "//THIS IS AUTOMATICALLY OVERWRITTEN BY ../bootstrap.sh DO NOT EDIT" > src/${LSOURCE}
+echo "//THIS IS AUTOMATICALLY OVERWRITTEN BY ../bootstrap.sh DO NOT EDIT" >  src/${LSOURCE}
+echo "//  you can use ccbuild to build the library using this stub file." >> src/${LSOURCE}
 ( cd src; find . -name '*.hh' | perl -ne 'chomp; print "#include \""; print; print "\"\n";' >> ${LSOURCE} )
 
 echo "Generating Makefile.am from MD5SUMS"
