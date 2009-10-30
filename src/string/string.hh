@@ -34,9 +34,16 @@ namespace ecpp
     static std::vector<std::string> split(std::string const &str, std::string const &delim);
 
     /**
-     *  Combine a list of string, adding delim between the elements.
+     *  Combine a list of strings, adding delim between the elements.
      */
-    static std::string combine(std::vector<std::string> const &lst, std::string const &delim);
+    template <class List>
+    static std::string combine(List &lst, std::string const &delim);
+
+    /**
+     *  Combine begin to end to a string with delim as delimitter.
+     */
+    template <class Iter>
+    static std::string combine(Iter begin, Iter end, std::string const &delim);
 
     /**
      *  Lex a string using delimmitters in delims.
@@ -65,6 +72,20 @@ namespace ecpp
 
   };
 
+  template <class Iter>
+  inline std::string String::combine(Iter begin, Iter end, std::string const &delim)
+  {
+    std::string res;
+    for (Iter i = begin; i != end; ++i)
+      res += (i != begin?delim:"") + *i;
+    return res;
+  }
+
+  template <class List>
+  inline std::string String::combine(List &lst, std::string const &delim)
+  {
+    return combine(lst.begin(),lst.end(),delim);
+  }
 
 
 };
