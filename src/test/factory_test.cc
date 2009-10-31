@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../factury/factury.hh"
+#include "../factory/factory.hh"
 
 using namespace std;
 using namespace ecpp;
@@ -51,11 +51,11 @@ private:
 
 int main()
 {
-  Factury3<Base,int,int,float> *f0, *f1, *f2;
+  Factory3<Base,int,int,float> *f0, *f1, *f2;
 
-  f0 = Factury3<Base,int,int,float>::create<TestA>();
-  f1 = Factury3<Base,int,int,float>::create<TestB>();
-  f2 = Factury3<Base,int,int,float>::create<TestC>();
+  f0 = Factory3<Base,int,int,float>::create<TestA>();
+  f1 = Factory3<Base,int,int,float>::create<TestB>();
+  f2 = Factory3<Base,int,int,float>::create<TestC>();
 
   Base *o0 = (*f0)(10,3,0.5);
   Base *o1 = (*f1)(10,3,0.5);

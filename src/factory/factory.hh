@@ -12,129 +12,129 @@
   along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __INC_ECPP_FACTURY_HH__
-#define __INC_ECPP_FACTURY_HH__
+#ifndef __INC_ECPP_FACTORY_HH__
+#define __INC_ECPP_FACTORY_HH__
 
 namespace ecpp
 {
 
   template <class BaseType>
-  struct Factury0 {
+  struct Factory0 {
     virtual BaseType * operator()() = 0;
 
     template <class Type>
-    static Factury0 *create();
+    static Factory0 *create();
   };
 
   template <class BaseType, class A0>
-  struct Factury1 {
+  struct Factory1 {
     virtual BaseType * operator()(A0 a0) = 0;
 
     template <class Type>
-    static Factury1 *create();
+    static Factory1 *create();
   };
 
   template <class BaseType, class A0, class A1>
-  struct Factury2 {
+  struct Factory2 {
     virtual BaseType * operator()(A0 a0, A1 a1) = 0;
 
     template <class Type>
-    static Factury2 *create();
+    static Factory2 *create();
   };
 
   template <class BaseType, class A0, class A1, class A2>
-  struct Factury3 {
+  struct Factory3 {
     virtual BaseType * operator()(A0 a0, A1 a1, A2 a2) = 0;
 
     template <class Type>
-    static Factury3 *create();
+    static Factory3 *create();
   };
 
   template <class BaseType, class A0, class A1, class A2, class A3>
-  struct Factury4 {
+  struct Factory4 {
     virtual BaseType * operator()(A0 a0, A1 a1, A2 a2, A3 a3) = 0;
 
     template <class Type>
-    static Factury4 *create();
+    static Factory4 *create();
   };
 
 
   template <class BaseType, class A0, class A1, class A2, class A3, class A4>
-  struct Factury5 {
+  struct Factory5 {
     virtual BaseType * operator()(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4) = 0;
 
     template <class Type>
-    static Factury5 *create();
+    static Factory5 *create();
   };
 
 
   template <class BaseType, class Type>
-  struct FacturyType0 : public Factury0<BaseType>
+  struct FactoryType0 : public Factory0<BaseType>
   { virtual Type * operator()() { return new Type(); } };
 
   template <class BaseType, class Type, class A0>
-  struct FacturyType1 : public Factury1<BaseType,A0>
+  struct FactoryType1 : public Factory1<BaseType,A0>
   { virtual Type * operator()(A0 a0) { return new Type(a0); } };
 
   template <class BaseType, class Type, class A0, class A1>
-  struct FacturyType2 : public Factury2<BaseType,A0,A1>
+  struct FactoryType2 : public Factory2<BaseType,A0,A1>
   { virtual Type * operator()(A0 a0, A1 a1) { return new Type(a0,a1); } };
 
   template <class BaseType, class Type, class A0, class A1, class A2>
-  struct FacturyType3 : public Factury3<BaseType,A0,A1,A2>
+  struct FactoryType3 : public Factory3<BaseType,A0,A1,A2>
   { virtual Type * operator()(A0 a0, A1 a1, A2 a2) { return new Type(a0,a1,a2); } };
 
   template <class BaseType, class Type, class A0, class A1, class A2, class A3>
-  struct FacturyType4 : public Factury4<BaseType,A0,A1,A2,A3>
+  struct FactoryType4 : public Factory4<BaseType,A0,A1,A2,A3>
   { virtual Type * operator()(A0 a0, A1 a1, A2 a2, A3 a3) { return new Type(a0,a1,a2,a3); } };
 
   template <class BaseType, class Type, class A0, class A1, class A2, class A3, class A4>
-  struct FacturyType5 : public Factury5<BaseType,A0,A1,A2,A3,A4>
+  struct FactoryType5 : public Factory5<BaseType,A0,A1,A2,A3,A4>
   { virtual Type * operator()(A0 a0, A1 a1, A2 a2, A3 a3, A4 a4) { return new Type(a0,a1,a2,a3,a4); } };
 
 
   template <class BaseType>
   template <class Type>
-  inline Factury0<BaseType> *Factury0<BaseType>::create()
+  inline Factory0<BaseType> *Factory0<BaseType>::create()
   {
-    return new FacturyType0<BaseType,Type>();
+    return new FactoryType0<BaseType,Type>();
   }
 
   template <class BaseType, class A0>
   template <class Type>
-  inline Factury1<BaseType,A0> *Factury1<BaseType,A0>::create()
+  inline Factory1<BaseType,A0> *Factory1<BaseType,A0>::create()
   {
-    return new FacturyType1<BaseType,Type,A0>();
+    return new FactoryType1<BaseType,Type,A0>();
   }
 
   template <class BaseType, class A0, class A1>
   template <class Type>
-  inline Factury2<BaseType,A0,A1> *Factury2<BaseType,A0,A1>::create()
+  inline Factory2<BaseType,A0,A1> *Factory2<BaseType,A0,A1>::create()
   {
-    return new FacturyType2<BaseType,Type,A0,A1>();
+    return new FactoryType2<BaseType,Type,A0,A1>();
   }
 
   template <class BaseType, class A0, class A1, class A2>
   template <class Type>
-  inline Factury3<BaseType,A0,A1,A2> *Factury3<BaseType,A0,A1,A2>::create()
+  inline Factory3<BaseType,A0,A1,A2> *Factory3<BaseType,A0,A1,A2>::create()
   {
-    return new FacturyType3<BaseType,Type,A0,A1,A2>();
+    return new FactoryType3<BaseType,Type,A0,A1,A2>();
   }
 
   template <class BaseType, class A0, class A1, class A2, class A3>
   template <class Type>
-  inline Factury4<BaseType,A0,A1,A2,A3> *Factury4<BaseType,A0,A1,A2,A3>::create()
+  inline Factory4<BaseType,A0,A1,A2,A3> *Factory4<BaseType,A0,A1,A2,A3>::create()
   {
-    return new FacturyType4<BaseType,Type,A0,A1,A2,A3>();
+    return new FactoryType4<BaseType,Type,A0,A1,A2,A3>();
   }
 
   template <class BaseType, class A0, class A1, class A2, class A3, class A4>
   template <class Type>
-  inline Factury5<BaseType,A0,A1,A2,A3,A4> *Factury5<BaseType,A0,A1,A2,A3,A4>::create()
+  inline Factory5<BaseType,A0,A1,A2,A3,A4> *Factory5<BaseType,A0,A1,A2,A3,A4>::create()
   {
-    return new FacturyType5<BaseType,Type,A0,A1,A2,A3,A4>();
+    return new FactoryType5<BaseType,Type,A0,A1,A2,A3,A4>();
   }
 
 };
 
-#endif // __INC_ECPP_FACTURY_HH__
+#endif // __INC_ECPP_FACTORY_HH__
